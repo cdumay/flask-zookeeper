@@ -9,3 +9,5 @@ python:
   - pypy3
 install:
 - pip install .
+script:
+- pip show flask-zookeeper
