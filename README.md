@@ -26,11 +26,11 @@ Next, add a `FlaskZookeeperClient` instance to your code:
     fzc = FlaskZookeeperClient(app)
 ```
 
-You can take a look at [tests/test_base](tests/test_base) for more 
+You can take a look at [tests/test_base.py](tests/test_base.py) for more 
 complete example.
 
 You can also take a look at 
-[tests/test_blueprint](tests/test_blueprint) for an example using Flask's 
+[tests/test_blueprint.py](tests/test_blueprint.py) for an example using Flask's 
 [application factories](http://flask.pocoo.org/docs/patterns/appfactories/) 
 and [blueprints](http://flask.pocoo.org/docs/blueprints/).
 
@@ -64,7 +64,7 @@ Zookeeper allow to set ACL. To enable this feature, set
 * **KAZOO_ACL_ADMIN**: Admin permission (default: `False`).
 * **KAZOO_ACL_ALL**: All permissions (default: `False`).
 
-You can take a look at [tests/test_acl](tests/test_acl) for a 
+You can take a look at [tests/test_acl.py](tests/test_acl.py) for a 
 complete example.
 
 ## License
