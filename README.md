@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/cdumay/flask-zookeeper.svg?branch=master)](https://travis-ci.org/cdumay/flask-zookeeper)
 # Flask-Zookeeper
 
 The Flask-Zookeeper extension provides support to 
