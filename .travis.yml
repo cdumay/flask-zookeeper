@@ -18,3 +18,4 @@ deploy:
   file: dist/*.tar.gz
   on:
     repo: cdumay/flask-zookeeper
+    tags: true
