@@ -1,11 +1,20 @@
 language: python
 python:
-  - 2.6
-  - 2.7
-  - 3.3
-  - 3.4
-  - 3.5
-  - pypy
-  - pypy3
+- 2.6
+- 2.7
+- 3.3
+- 3.4
+- 3.5
+- pypy
+- pypy3
 script:
 - python setup.py sdist
+deploy:
+  provider: releases
+  api_key:
+    secure: VOfxpfVGiN5GVFEki5QYOzPbVhkTjlyzTPhTeFgBBTEUGr0wSqFDNndWrdZmvoMAVuHcct45lWh++EWuM8oIxqt4gqb1xj7EOr9LN+6w8q+umIH+FKTAHIsxH7xn3FRrBe6P1kx+IN5MZjAItVcHoUWRRbycgvcVZR9XjBH8/JuH5D1tmFYEDjwTBnx1wYWWYU/jR5L2thvBbj/VQlXrwkr4hINC6pkvPNeKoMGgfpKz16+F3USkjflfCXzFebY4jQkei4JEl6SQswlmRtr1+r9Udy6vcJBOLpqRlKZDYezdzGVC+RhPwO6wokfm6CuF2Mt5wt8/7n6G631JgcJhDl2VOQ5XPdwOJrNi2oPXFSfPuPIByjEKy1W0TKPvGTYARl1M51w6JjA3U8GRg8UeVs38KyQmonht9HgNvXLYfvvpnHlVpgeNbZizNktiNVgRkXoA5lljeOrVapV9mlSP2FBCWssxqm0U1GPJAr7mOAH0NZeiP0EeZORJHeNtszbDZCb8T7L0YI0bNdfQmnwpR+UiK24DlG/6yJ/uUK2bSe0/OW3uH5SZNIRqMpLXPF3/OOwms/ONL7mSLK44WZ0VGT4EfZhZtOagsmMBQ8IkO4F5QNP3qvn7UO9rs2AfqzDo92vN4bQ5bs6W7UZjRgLlruHqpgLZ5sYX5apOx7eIeEA=
+  skip_cleanup: true
+  file_glob: true
+  file: dist/*.tar.gz
+  on:
+    repo: cdumay/flask-zookeeper
