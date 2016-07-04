@@ -28,7 +28,7 @@ connection_state_changed = Namespace().signal('state-change')
 
 class FlaskZookeeperClient(object):
     def __init__(self, app=None):
-        self.uuid = uuid.uuid4()
+        self.uuid = str(uuid.uuid4())
         self.app = None
         self.blueprint = None
         self.blueprint_setup = None
