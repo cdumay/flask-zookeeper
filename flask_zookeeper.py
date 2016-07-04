@@ -6,6 +6,8 @@
 
 
 """
+import uuid
+
 from flask import current_app
 from flask.signals import Namespace
 from flask.blueprints import Blueprint
@@ -26,6 +28,7 @@ connection_state_changed = Namespace().signal('state-change')
 
 class FlaskZookeeperClient(object):
     def __init__(self, app=None):
+        self.uuid = uuid.uuid4()
         self.app = None
         self.blueprint = None
         self.blueprint_setup = None
@@ -60,8 +63,6 @@ class FlaskZookeeperClient(object):
         else:
             app.teardown_request(self.teardown)
 
-
-
     def connect(self):
         """Initialize a connection to the Zookeeper quorum.
 
@@ -73,7 +74,6 @@ class FlaskZookeeperClient(object):
             connection_retry=current_app.config['KAZOO_RETRY'],
             command_retry=current_app.config['KAZOO_RETRY']
         )
-
         # is ACL ?
         username = current_app.config.get('KAZOO_ACL_USERNAME', None)
         password = current_app.config.get('KAZOO_ACL_PASSWORD', None)
@@ -123,9 +123,9 @@ class FlaskZookeeperClient(object):
     def connection(self):
         ctx = stack.top
         if ctx is not None:
-            if not hasattr(ctx, 'kazoo_client'):
-                ctx.kazoo_client = self.connect()
-            return ctx.kazoo_client
+            if not hasattr(ctx, self.uuid):
+                setattr(ctx, self.uuid, self.connect())
+            return getattr(ctx, self.uuid)
 
     def connection_state_listener(self, state):
         """Publishes state changes to a Flask signal"""

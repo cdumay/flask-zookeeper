@@ -9,13 +9,13 @@ python:
 - pypy3
 script:
 - python setup.py sdist
+- python setup.py bdist_wheel
 deploy:
-  provider: releases
-  api_key:
-    secure: VOfxpfVGiN5GVFEki5QYOzPbVhkTjlyzTPhTeFgBBTEUGr0wSqFDNndWrdZmvoMAVuHcct45lWh++EWuM8oIxqt4gqb1xj7EOr9LN+6w8q+umIH+FKTAHIsxH7xn3FRrBe6P1kx+IN5MZjAItVcHoUWRRbycgvcVZR9XjBH8/JuH5D1tmFYEDjwTBnx1wYWWYU/jR5L2thvBbj/VQlXrwkr4hINC6pkvPNeKoMGgfpKz16+F3USkjflfCXzFebY4jQkei4JEl6SQswlmRtr1+r9Udy6vcJBOLpqRlKZDYezdzGVC+RhPwO6wokfm6CuF2Mt5wt8/7n6G631JgcJhDl2VOQ5XPdwOJrNi2oPXFSfPuPIByjEKy1W0TKPvGTYARl1M51w6JjA3U8GRg8UeVs38KyQmonht9HgNvXLYfvvpnHlVpgeNbZizNktiNVgRkXoA5lljeOrVapV9mlSP2FBCWssxqm0U1GPJAr7mOAH0NZeiP0EeZORJHeNtszbDZCb8T7L0YI0bNdfQmnwpR+UiK24DlG/6yJ/uUK2bSe0/OW3uH5SZNIRqMpLXPF3/OOwms/ONL7mSLK44WZ0VGT4EfZhZtOagsmMBQ8IkO4F5QNP3qvn7UO9rs2AfqzDo92vN4bQ5bs6W7UZjRgLlruHqpgLZ5sYX5apOx7eIeEA=
-  skip_cleanup: true
-  file_glob: true
-  file: dist/*.tar.gz
+  provider: pypi
+  user: cdumay
+  password:
+    secure: jRq58NHhFQ9k0PAtLqutV4l89ZHDrBtaJURIzpVUup6MDl22nZDBvZsAfR35rp/LK69vjLQx7w2GrXP4eAdQePjTaQXHfKE3c9EyAUshu8f0N5ooEklgDlNH1RmH3cnajmUzbWllpIzykyrnLJK0SAH5h60wWENTzGdDG6RCg5+QEjm0jc7BvCUkxE1owlPrkF2XUd+FLj8IsYV8WCBNBTkwpc+I5CNGyotletkNLjmggKPTN7hSAAagfN8wdNZSfVfh+UPtVGuFJJ4ql5ZsaEZ4h4+BreYFDMsQW/UjZ2jwFhClxHcmHlrAnFape+HRNk6VfnWvSAepLxoXzTMYJP8IGn6U5PBrWriDGFswSVpGtVTLifO3z5DpEYvjgSfRLeRDKSQ2jrWfpgjX9XCuaIGitMwN5T8sExtVQ0bk9cSqUkASm/PaNe3Z7oYnehf3UEslL6kp24d2dwrrMyTFJ/maBj2P5/1CkQiN/iJySRShhCCpu0WBgIRVWmqVO0ExgSGo+WAjW2ODyQjcAolu5A0nF72zGZpeilbRlbClmS+wq9O/rcwb7ofhodqAftY5f3M8VryScSckqsJly5eKD7kw1jwVWj/eaFFuNs1qckBpt7jUM1Q8KPwKplKI66LrjlvleZ1vpX86wXrXDimmfxsS64YzR/ibwMSji2GE6GI=
   on:
-    repo: cdumay/flask-zookeeper
     tags: true
+    distributions: sdist bdist_wheel
+    repo: cdumay/flask-zookeeper
