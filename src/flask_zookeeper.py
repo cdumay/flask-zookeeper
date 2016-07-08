@@ -116,7 +116,8 @@ class FlaskZookeeperClient(object):
         client.add_listener(self.connection_state_listener)
         return client
 
-    def teardown(self, exception):
+    @staticmethod
+    def teardown(exception):
         ctx = stack.top
         if hasattr(ctx, 'kazoo_client'):
             ctx.kazoo_client.stop()
