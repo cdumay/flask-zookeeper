@@ -13,7 +13,7 @@ Quickstart
 First, install cdumay-rest-client using
 `pip <https://pip.pypa.io/en/stable/>`_:
 
-    $ pip install flask-zookeeper
+    pip install flask-zookeeper
 
 Flask-Zookeeper depends, and will install for you, recent versions of 
 Flask and `Kazzo <https://kazoo.readthedocs.io/en/latest/>`_.
@@ -27,7 +27,6 @@ Next, add a :code:`FlaskZookeeperClient` instance to your code:
     from flask_zookeeper import FlaskZookeeperClient
     
     app = Flask(__name__)
-    
     fzc = FlaskZookeeperClient(app)
 
 You can take a look at `tests/test_base.py <tests/test_base.py>`_ for more
