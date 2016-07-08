@@ -14,9 +14,12 @@ from flask.blueprints import Blueprint
 from kazoo.client import KazooClient
 from kazoo.security import make_digest_acl
 
+
 try:
+    # noinspection PyProtectedMember
     from flask import _app_ctx_stack as stack
 except ImportError:
+    # noinspection PyProtectedMember
     from flask import _request_ctx_stack as stack
 
 __all__ = (

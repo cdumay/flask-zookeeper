@@ -6,7 +6,7 @@
 
 """
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='flask-zookeeper',
@@ -23,4 +23,6 @@ setup(
     include_package_data=True,
     zip_safe=True,
     install_requires=open('requirements.txt', 'r').readlines(),
+    package_dir={'': 'src'},
+    packages=find_packages('src'),
 )
