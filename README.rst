@@ -1,46 +1,51 @@
-[![Build Status](https://travis-ci.org/cdumay/flask-zookeeper.svg?branch=master)](https://travis-ci.org/cdumay/flask-zookeeper)
-# Flask-Zookeeper
+.. image:: https://travis-ci.org/cdumay/flask-zookeeper.svg?branch=master
+    :target: https://travis-ci.org/cdumay/flask-zookeeper
+
+Flask-Zookeeper
+===============
 
 The Flask-Zookeeper extension provides support to 
-[Zookeeper](http://zookeeper.apache.org/) clusters.
+`Zookeeper <http://zookeeper.apache.org/>`_ clusters.
 
-## Quickstart
+Quickstart
+----------
 
-First, install Flask-Zookeeper using 
-[pip](https://pip.pypa.io/en/stable/):
+First, install cdumay-rest-client using
+`pip <https://pip.pypa.io/en/stable/>`_:
 
     $ pip install flask-zookeeper
 
 Flask-Zookeeper depends, and will install for you, recent versions of 
 Flask and [Kazzo](https://kazoo.readthedocs.io/en/latest/). 
-Flask-Zookeeper is compatible with and tested on Python 2.7, 3.4 and 
-3.5.
+Flask-Zookeeper is compatible with and tested on Python 2.7, 3.4 and 3.5.
 
 Next, add a `FlaskZookeeperClient` instance to your code:
 
-```python
+.. code-block:: python
+
     from flask import Flask
     from flask_zookeeper import FlaskZookeeperClient
     
     app = Flask(__name__)
     
     fzc = FlaskZookeeperClient(app)
-```
 
-You can take a look at [tests/test_base.py](tests/test_base.py) for more 
-complete example.
+You can take a look at `tests/test_base.py <tests/test_base.py>`_ for more
+complete example. 
 
 You can also take a look at 
-[tests/test_blueprint.py](tests/test_blueprint.py) for an example using Flask's 
-[application factories](http://flask.pocoo.org/docs/patterns/appfactories/) 
-and [blueprints](http://flask.pocoo.org/docs/blueprints/).
+`tests/test_blueprint.py <tests/test_blueprint.py>`_ for an example using Flask's
+`application factories <http://flask.pocoo.org/docs/patterns/appfactories/>`_
+and `blueprints <http://flask.pocoo.org/docs/blueprints/>`_.
 
-## About setting up
+About setting up
+----------------
 
 Flask-Zookeeper uses additional variables which can be set in the 
 `app.config`:
 
-### Main values
+Main values
+***********
 
 * **KAZOO_HOSTS**: Zookeeper quorum server list separated by commas (
 default: `127.0.0.1:2181`).
@@ -51,7 +56,8 @@ connection (default: `10.0`).
 * **KAZOO_RETRY**: Dict of options to use for retrying the connection 
 to Zookeeper (default: `{'max_delay': 3600}`).
 
-## ACL configuration
+ACL configuration
+*****************
 
 Zookeeper allow to set ACL. To enable this feature, set 
 `KAZOO_ACL_USERNAME` and `KAZOO_ACL_PASSWORD` in the `app.config`.
@@ -65,9 +71,10 @@ Zookeeper allow to set ACL. To enable this feature, set
 * **KAZOO_ACL_ADMIN**: Admin permission (default: `False`).
 * **KAZOO_ACL_ALL**: All permissions (default: `False`).
 
-You can take a look at [tests/test_acl.py](tests/test_acl.py) for a 
+You can take a look at `tests/test_acl.py <tests/test_acl.py`_ for a
 complete example.
 
-## License
+License
+-------
 
 Apache License 2.0

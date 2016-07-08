@@ -1,21 +1,15 @@
 language: python
 python:
-- 2.6
 - 2.7
-- 3.3
 - 3.4
 - 3.5
-- pypy
-- pypy3
 script:
-- python setup.py sdist
-- python setup.py bdist_wheel
+- python setup.py build
 deploy:
   provider: pypi
   user: cdumay
   password:
-    secure: lYFsjp2mLMLc1UdJ+yOOBQWwjSfY/zI5SgbdVZK5flN2zdGZXCoVr3+6caxrFISRwkLQauqcKyPUw4mjKAIc0c8VC2AOQhlXxUgHrEy69d7NTabMyGivH1CafYTNCTzuM/sQKrzZ9mzVT9//X2pDY+QILloDawG+m1PQ0X5SO7PiiJyIfc1WbMkFiKu19EVgdZfwpLq1n6XK9I4ijQLuRxkbdpmddbIVRGmOU9Pj3Doks2g9Dq31CENnWEcY3xh0J36FoCiqvltfWEplKvlgD7q5wj3Tx+11fbJ3qRJI65JfyKntYVtAaDvlQWaDM21uShFrI/kIaQpOVcMpzHj/zMlrzOl65OBvtEfoV1TCP1rkVkCjPE/4Kco11azL1LteKFMF5EznsNfzxtOGbQwIsDiBybdp8dUcHOCZBuLjwjYxb77K9PiSLVgWk6icfvxZBVauk4STa2O1StmJ+graDYuAJSV5/zmPYwYJjytP4yZ1rPOaW9huu5FSSo80+GJNdO80uJlrajpUJ7vEkBD5yxJewnHgpQnFP1iQNf1xZBGyMXRGptNPzNlADTpLMa13nTIgd6TMhXJDD6An9WZ4l/0DB4V9xv3Dn/pDagySZN6FK0hICDawyKUqrFAYxCx8zPw5q+Lt2vy36BepYPZ2iniyXzvRh4mBrOUcUSBjsVY=
+    secure: yaKHbuxAi3khkmVPCTzb8TABDqmNre2ThFXZY9oh/KsUc6T1W0mBIf08/8bVqwRmIeuRlRgy3Ji6y3noMdAUlhlrnWVafzME9coqeurrbWMSkkghR0t/v1rBscv7BOE+vWV8SB/DkNKomvpQi9/Gb/0DnVyY4jyw+M5yh4iv55cQK86gkVScIkmCnFDt/DimauJQ1JpKJOW5Glt6/JDrxFBQzFul+ICVHqW5kBurscwe9WiA8HGW+RKJPYEQ21V8fq/nzmublWA0ZxlHDyS2sQdxnpGebd75RU54/ywzj47SUSbT+ea6wD7zktmyJcP7YILYqUzMuoNApt//kfBdaADOrTh6BFQ+eepjJ1C6zxnn6gqfYgk6mJRZWY+TpQFOv4Tq+GU7z8DK1uPMA/3AIlSODmEyLIqZJpPH4RwMlsuqkAtzoRiU/YG6llEkcfpovwjlak1Oynwc0AoCS3qbpKPjR5hPWIJmgA0LyiuyMvX2iS+p/0op0tU2EUB4JZUSw3zWcNXfA5neUDVYmCi5XzfQgr7SCzlvji9ht2S2nuaFHeVSfMvz8gCYJP1AMput1Q4qn4EArJoQzQssurVuEUSti1Wi/QwF8mH77K5JhMkhx6WpSwCY7rxQWOqw70J38/cOrQn37F5EAiEoKmweEvPv0F85fVH0SJig22b1IX0=
   on:
     tags: true
-    distributions: sdist bdist_wheel
     repo: cdumay/flask-zookeeper
