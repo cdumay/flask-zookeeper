@@ -116,6 +116,7 @@ class FlaskZookeeperClient(object):
         client.add_listener(self.connection_state_listener)
         return client
 
+    # noinspection PyUnusedLocal
     @staticmethod
     def teardown(exception):
         ctx = stack.top

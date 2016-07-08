@@ -11,8 +11,10 @@ from flask import Flask
 from flask import Blueprint
 from flask_zookeeper import FlaskZookeeperClient
 
+
 class BaseConfig:
     KAZOO_HOSTS = "10.46.3.92:2181"
+
 
 # flask app init
 app = Flask(__name__)
