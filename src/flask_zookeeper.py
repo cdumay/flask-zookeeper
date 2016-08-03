@@ -8,12 +8,10 @@
 """
 import uuid
 
-from flask import current_app
 from flask.signals import Namespace
 from flask.blueprints import Blueprint
 from kazoo.client import KazooClient
 from kazoo.security import make_digest_acl
-
 
 try:
     # noinspection PyProtectedMember
@@ -56,15 +54,16 @@ class FlaskZookeeperClient(object):
 
         :param app: Flask application instance.
         """
-        app.config.setdefault('KAZOO_HOSTS', '127.0.0.1:2181')
-        app.config.setdefault('KAZOO_START_TIMEOUT', 15)
-        app.config.setdefault('KAZOO_SESSION_TIMEOUT', 10.0)
-        app.config.setdefault('KAZOO_RETRY', {'max_delay': 3600})  # 1 hour
+        self.app = app
+        self.app.config.setdefault('KAZOO_HOSTS', '127.0.0.1:2181')
+        self.app.config.setdefault('KAZOO_START_TIMEOUT', 15)
+        self.app.config.setdefault('KAZOO_SESSION_TIMEOUT', 10.0)
+        self.app.config.setdefault('KAZOO_RETRY', {'max_delay': 3600})  # 1 hour
 
-        if hasattr(app, 'teardown_appcontext'):
-            app.teardown_appcontext(self.teardown)
+        if hasattr(self.app, 'teardown_appcontext'):
+            self.app.teardown_appcontext(self.teardown)
         else:
-            app.teardown_request(self.teardown)
+            self.app.teardown_request(self.teardown)
 
     def connect(self):
         """Initialize a connection to the Zookeeper quorum.
@@ -72,14 +71,14 @@ class FlaskZookeeperClient(object):
         :return: Kazoo client object as connection.
         """
         client_kwargs = dict(
-            hosts=current_app.config['KAZOO_HOSTS'],
-            timeout=current_app.config['KAZOO_SESSION_TIMEOUT'],
-            connection_retry=current_app.config['KAZOO_RETRY'],
-            command_retry=current_app.config['KAZOO_RETRY']
+            hosts=self.app.config['KAZOO_HOSTS'],
+            timeout=self.app.config['KAZOO_SESSION_TIMEOUT'],
+            connection_retry=self.app.config['KAZOO_RETRY'],
+            command_retry=self.app.config['KAZOO_RETRY']
         )
         # is ACL ?
-        username = current_app.config.get('KAZOO_ACL_USERNAME', None)
-        password = current_app.config.get('KAZOO_ACL_PASSWORD', None)
+        username = self.app.config.get('KAZOO_ACL_USERNAME', None)
+        password = self.app.config.get('KAZOO_ACL_PASSWORD', None)
 
         if username and password:
             client_kwargs.update(dict(
@@ -87,22 +86,22 @@ class FlaskZookeeperClient(object):
                     make_digest_acl(
                         username=username,
                         password=password,
-                        read=current_app.config.get(
+                        read=self.app.config.get(
                             'KAZOO_ACL_READ', False
                         ),
-                        write=current_app.config.get(
+                        write=self.app.config.get(
                             'KAZOO_ACL_WRITE', False
                         ),
-                        create=current_app.config.get(
+                        create=self.app.config.get(
                             'KAZOO_ACL_CREATE', False
                         ),
-                        delete=current_app.config.get(
+                        delete=self.app.config.get(
                             'KAZOO_ACL_DELETE', False
                         ),
-                        admin=current_app.config.get(
+                        admin=self.app.config.get(
                             'KAZOO_ACL_ADMIN', False
                         ),
-                        all=current_app.config.get(
+                        all=self.app.config.get(
                             'KAZOO_ACL_ALL', False
                         )
 
@@ -112,7 +111,7 @@ class FlaskZookeeperClient(object):
             ))
 
         client = KazooClient(**client_kwargs)
-        client.start(timeout=current_app.config['KAZOO_START_TIMEOUT'])
+        client.start(timeout=self.app.config['KAZOO_START_TIMEOUT'])
         client.add_listener(self.connection_state_listener)
         return client
 
