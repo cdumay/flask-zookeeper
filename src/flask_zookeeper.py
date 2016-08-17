@@ -116,12 +116,12 @@ class FlaskZookeeperClient(object):
         return client
 
     # noinspection PyUnusedLocal
-    @staticmethod
-    def teardown(exception):
+    def teardown(self, exception):
         ctx = stack.top
-        if hasattr(ctx, 'kazoo_client'):
-            ctx.kazoo_client.stop()
-            ctx.kazoo_client.close()
+        client = getattr(ctx, self.uuid, None)
+        if client:
+            client.stop()
+            client.close()
 
     @property
     def connection(self):
