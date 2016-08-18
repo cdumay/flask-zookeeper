@@ -122,6 +122,10 @@ class FlaskZookeeperClient(object):
         if client:
             client.stop()
             client.close()
+            del client
+
+        setattr(ctx, self.uuid, None)
+        setattr(self, self.uuid, None)
 
     @property
     def connection(self):
